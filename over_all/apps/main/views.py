@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import  TemplateView, CreateView
 from .forms import *
 from ..posts.models import Post,Tag
-
+from ..accounts.models import User
 from .models import Appeal
 
 

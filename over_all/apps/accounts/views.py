@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, CreateView, FormView
+from django.views.generic import TemplateView, CreateView, FormView, DetailView
 from .models import  *
 from .forms import *
 
@@ -47,14 +47,38 @@ class SubView(CreateView):
     form_class = EmailForm
 
 
-class ProfileView(TemplateView,LoginRequiredMixin):
+class ProfileView(DetailView):
     template_name = 'pages/profile.html'
+    model = User
+    context_object_name = 'profile'
+    queryset = User.objects.all()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user_id = kwargs.get('pk',self.request.user.pk)
-        context['user'] = User.objects.get(pk=user_id)
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     user_id = kwargs.get('pk',self.request.user.pk)
+    #     context['user'] = User.objects.get(pk=user_id)
+    #     return context
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
